@@ -16,7 +16,7 @@ import Sidebar from "./components/Sidebar.vue";
     <!-- flex 布局 -->
     <div class="flex w-full h-full bg-gray-50 dark:bg-gray-500/10">
         <div class="flex flex-col">
-            <Sidebar :width="140" />
+            <Sidebar :width="200" />
         </div>
         <main class="flex-1 p-4 bg-gray-100 dark:bg-gray-600">
             <!-- 路由视图 -->

@@ -36,24 +36,7 @@ const username = ref('')
             ]" />
             <p>{{ username }}</p>
         </div>
-        <div>
-            <Button>default</Button>
-            <Button variant="outline">outline</Button>
-            <Button variant="secondary">secondary</Button>
-            <Button variant="destructive">
-                destructive
-            </Button>
-            <Button variant="link">
-                Link
-            </Button>
 
-            <Button variant="success">
-                Success
-            </Button>
-            <Button variant="info">
-                Info
-            </Button>
-        </div>
     </div>
 </template>
 

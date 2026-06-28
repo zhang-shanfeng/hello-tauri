@@ -20,7 +20,7 @@ const sidebarWidth = ref<number>(props.width)
     class="flex flex-1 shrink-0 bg-gray-100 dark:bg-gray-600 border-r border-gray-300 transition-[width] duration-300"
     :style="{ width: `${sidebarWidth}px` }">
     <div class="w-full h-full flex flex-col overflow-hidden">
-      <nav class="sidebar flex-1 p-4 space-y-2 overflow-y-auto text-black">
+      <nav class="sidebar flex-1 p-4 text-sm space-y-2 overflow-y-auto text-black">
         <!-- a 链接 -->
         <router-link to="/" active-class="bg-sky-200/70" class="flex font-bold px-4 py-2 rounded hover:bg-gray-200">
           <HomeIcon /> <span class="ml-4">首页</span>

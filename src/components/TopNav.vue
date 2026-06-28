@@ -15,13 +15,13 @@ const topTitle = ref<string>(props.title)
 </script>
 
 <template>
-    <div class="h-20">
+    <div class="h-20  mb-8">
         <div>
             <h2>{{ topTitle }}</h2>
         </div>
-        <div>
-            <router-view />
-        </div>
+        <nav class="flex bg-white p-4">
+            <slot></slot>
+        </nav>
     </div>
 </template>
 

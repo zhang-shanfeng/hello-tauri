@@ -15,7 +15,19 @@ const routes: Array<RouteRecordRaw> = [
     {
         path: '/uitest',
         name: 'UITest',
-        component: () => import('../views/UITest.vue')
+        component: () => import('../views/UITest.vue'),
+        children: [
+            {
+                name: 'badge-view',
+                path: '/uitest/badge-view',
+                component: () => import('../views/ui-test-views/BadgeView.vue')
+            },
+            {
+                name: 'button-view',
+                path: '/uitest/button-view',
+                component: () => import('../views/ui-test-views/ButtonView.vue')
+            },
+        ]
     }
 ]
 
