@@ -15,11 +15,11 @@ const topTitle = ref<string>(props.title)
 </script>
 
 <template>
-    <div class="h-20  mb-8">
+    <div class="mb-8">
         <div>
             <h2>{{ topTitle }}</h2>
         </div>
-        <nav class="flex bg-white p-4">
+        <nav class="flex flex-wrap gap-x-2 bg-white p-4">
             <slot></slot>
         </nav>
     </div>

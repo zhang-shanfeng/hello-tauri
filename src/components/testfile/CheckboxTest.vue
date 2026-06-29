@@ -1,85 +1,39 @@
 <script setup lang="ts">
-import { CheckIcon, ChevronsUpDownIcon } from '@lucide/vue'
-import { computed, ref } from 'vue'
-import { cn } from '@/lib/utils'
-import { Button } from '@/components/ui/button'
-import {
-    Command,
-    CommandEmpty,
-    CommandGroup,
-    CommandInput,
-    CommandItem,
-    CommandList,
-} from '@/components/ui/command'
-import {
-    Popover,
-    PopoverContent,
-    PopoverTrigger,
-} from '@/components/ui/popover'
-
-const frameworks = [
-    {
-        value: 'next.js',
-        label: 'Next.js',
-    },
-    {
-        value: 'sveltekit',
-        label: 'SvelteKit',
-    },
-    {
-        value: 'nuxt.js',
-        label: 'Nuxt.js',
-    },
-    {
-        value: 'remix',
-        label: 'Remix',
-    },
-    {
-        value: 'astro',
-        label: 'Astro',
-    },
-]
-
-const open = ref(false)
-const value = ref('')
-
-const selectedFramework = computed(() =>
-    frameworks.find(framework => framework.value === value.value),
-)
-
-function selectFramework(selectedValue: string) {
-    value.value = selectedValue === value.value ? '' : selectedValue
-    open.value = false
-}
+import { Checkbox } from '@/components/ui/checkbox'
+import { Label } from '@/components/ui/label'
 </script>
 
 <template>
-    <Popover v-model:open="open">
-        <PopoverTrigger as-child>
-            <Button variant="outline" role="combobox" :aria-expanded="open" class="w-[200px] justify-between">
-                {{ selectedFramework?.label || "Select framework..." }}
-                <ChevronsUpDownIcon class="opacity-50" />
-            </Button>
-        </PopoverTrigger>
-        <PopoverContent class="w-[200px] p-0">
-            <Command>
-                <CommandInput class="h-9" placeholder="Search framework..." />
-                <CommandList>
-                    <CommandEmpty>No framework found.</CommandEmpty>
-                    <CommandGroup>
-                        <CommandItem v-for="framework in frameworks" :key="framework.value" :value="framework.value"
-                            @select="(ev) => {
-                                selectFramework(ev.detail.value as string)
-                            }">
-                            {{ framework.label }}
-                            <CheckIcon :class="cn(
-                                'ml-auto',
-                                value === framework.value ? 'opacity-100' : 'opacity-0',
-                            )" />
-                        </CommandItem>
-                    </CommandGroup>
-                </CommandList>
-            </Command>
-        </PopoverContent>
-    </Popover>
+    <div class="flex flex-col gap-6">
+        <div class="flex items-center gap-3">
+            <Checkbox id="terms" />
+            <Label for="terms">Accept terms and conditions</Label>
+        </div>
+        <div class="flex items-start gap-3">
+            <Checkbox id="terms-2" :default-value="true" />
+            <div class="grid gap-2">
+                <Label for="terms-2">Accept terms and conditions</Label>
+                <p class="text-muted-foreground text-sm">
+                    By clicking this checkbox, you agree to the terms and conditions.
+                </p>
+            </div>
+        </div>
+        <div class="flex items-start gap-3">
+            <Checkbox id="toggle" disabled />
+            <Label for="toggle">Enable notifications</Label>
+        </div>
+        <Label
+            class="hover:bg-accent/50 flex items-start gap-3 rounded-lg border p-3 has-[[aria-checked=true]]:border-blue-600 has-[[aria-checked=true]]:bg-blue-50 dark:has-[[aria-checked=true]]:border-blue-900 dark:has-[[aria-checked=true]]:bg-blue-950">
+            <Checkbox id="toggle-2" :default-value="true"
+                class="data-[state=checked]:border-blue-600 data-[state=checked]:bg-blue-600 data-[state=checked]:text-white dark:data-[state=checked]:border-blue-700 dark:data-[state=checked]:bg-blue-700" />
+            <div class="grid gap-1.5 font-normal">
+                <p class="text-sm leading-none font-medium">
+                    Enable notifications
+                </p>
+                <p class="text-muted-foreground text-sm">
+                    You can enable or disable notifications at any time.
+                </p>
+            </div>
+        </Label>
+    </div>
 </template>

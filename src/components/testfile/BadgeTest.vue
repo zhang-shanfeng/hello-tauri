@@ -5,11 +5,11 @@ import { Badge } from '@/components/ui/badge'
 
 <template>
     <div class="flex flex-col items-center gap-2 bg-green-600/70 p-4">
-        <div>
-            <h2>
-                Badge 测试
-            </h2>
-        </div>
+
+        <h2>
+            Badge 测试
+        </h2>
+
         <div class="flex w-full flex-wrap gap-2">
             <Badge>Badge</Badge>
             <Badge variant="secondary">
