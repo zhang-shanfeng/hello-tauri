@@ -1,6 +1,4 @@
 <script setup lang="ts">
-
-import ResistorDoublesCalculator from '@/components/ResistorDoublesCalculator.vue';
 import TopNav from '../components/TopNav.vue';
 
 </script>
@@ -9,7 +7,7 @@ import TopNav from '../components/TopNav.vue';
 
   <div id="home" class="flex flex-col h-full">
     <TopNav title="首页" />
-    <ResistorDoublesCalculator />
+
   </div>
 
 </template>

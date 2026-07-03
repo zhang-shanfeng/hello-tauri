@@ -56,6 +56,14 @@ import { buttonVariants } from '@/components/ui/button'
                 active-class="bg-sky-200/70">
                 Select 测试
             </router-link>
+            <router-link :to="{ name: 'tooltip-view' }" :class="buttonVariants({ variant: 'link', size: 'default' })"
+                active-class="bg-sky-200/70">
+                Tooltip 测试
+            </router-link>
+            <router-link :to="{ name: 'sonner-view' }" :class="buttonVariants({ variant: 'link', size: 'default' })"
+                active-class="bg-sky-200/70">
+                Sonner 测试
+            </router-link>
         </TopNav>
         <router-view />
     </div>

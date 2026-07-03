@@ -1,8 +1,11 @@
 <script setup lang="ts">
 // import { ref } from "vue";
 // import { invoke } from "@tauri-apps/api/core";
-import Sidebar from "./components/Sidebar.vue";
+// import Sidebar from "./components/Sidebar.vue";
 import Sidebar2 from "./components/Sidebar2.vue";
+
+import 'vue-sonner/style.css'
+import { Toaster } from '@/components/ui/sonner'
 
 // const greetMsg = ref("");
 // const name = ref("");
@@ -20,10 +23,11 @@ import Sidebar2 from "./components/Sidebar2.vue";
             <!-- <Sidebar :width="200" /> -->
             <Sidebar2 />
         </div>
-        <main class="flex-1 p-4 bg-gray-100 dark:bg-gray-600">
+        <main class="flex-1 bg-gray-100 dark:bg-gray-600">
             <!-- 路由视图 -->
             <router-view />
         </main>
+        <Toaster />
     </div>
 </template>
 

@@ -3,4 +3,5 @@ import { Textarea } from '@/components/ui/textarea'
 </script>
 <template>
     <Textarea placeholder="Type your message here." />
+    <Textarea placeholder="Type your message here." />
 </template>

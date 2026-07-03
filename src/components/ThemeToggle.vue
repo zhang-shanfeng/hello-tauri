@@ -1,13 +1,13 @@
 <script setup lang="ts">
-import { useDark, useToggle } from '@vueuse/core'
+import { computed } from 'vue';
 import { Button } from '@/components/ui/button' // 引入你的 shadcn 按钮
+import { useSettingsStore } from '@/stores';
 
-// useDark 会自动监听并在 <html> 标签上切换 .dark 类名
-// 它默认会从 localStorage 读取 'vueuse-color-scheme'
-const isDark = useDark()
+const settingsStore = useSettingsStore()
 
-// useToggle 是一个方便切换布尔值的工具函数
-const toggleDark = useToggle(isDark)
+const isDark = computed(() => settingsStore.isDark)
+const toggleDark = settingsStore.toggleDark
+
 </script>
 
 <template>

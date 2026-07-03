@@ -7,6 +7,39 @@ const routes: Array<RouteRecordRaw> = [
         component: () => import('../views/HomeView.vue')
     },
     {
+        path: '/analog',
+        name: 'analog',
+        component: () => import('../views/AnalogView.vue'),
+        redirect: { name: 'resistor' },
+        children: [
+            {
+                path: 'resistor',
+                name: 'resistor',
+                component: () => import('../components/analog/resistor/ResistorPanel.vue')
+            },
+            {
+                path: 'capacitor',
+                name: 'capacitor',
+                component: () => import('../components/analog/capacitor/Capacitor.vue')
+            },
+            {
+                path: 'filter',
+                name: 'filter',
+                component: () => import('../components/analog/filter/Filter.vue')
+            },
+            {
+                path: 'inductor',
+                name: 'inductor',
+                component: () => import('../components/analog/inductor/Inductor.vue')
+            },
+            {
+                path: 'power',
+                name: 'power',
+                component: () => import('../components/analog/power/Power.vue')
+            }
+        ]
+    },
+    {
         path: '/setting',
         name: 'Setting',
         component: () => import('../views/Setting.vue')
@@ -81,6 +114,16 @@ const routes: Array<RouteRecordRaw> = [
                 name: 'select-view',
                 path: 'select-view',
                 component: () => import('../views/ui-test-views/SelectView.vue')
+            },
+            {
+                name: 'tooltip-view',
+                path: 'tooltip-view',
+                component: () => import('../views/ui-test-views/TooltipView.vue')
+            },
+            {
+                name: 'sonner-view',
+                path: 'sonner-view',
+                component: () => import('../views/ui-test-views/SonnerView.vue')
             }
         ]
     }

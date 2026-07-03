@@ -1,5 +1,6 @@
 
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
+/* @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap'); */
+@import "/public/fonts/fonts.css";
 
 @import "tailwindcss";
 
@@ -12,6 +13,8 @@
 @plugin "@tailwindcss/forms";
 
 @theme {
+  --font-sans: 'Inter', ui-sans-serif, system-ui, sans-serif, "Apple Color Emoji",
+      "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
   /* 自定义一个极其平滑的贝塞尔变色曲线 */
   --transition-timing-function-fluid-color: cubic-bezier(0.2, 0.8, 0.2, 1);
 }
@@ -129,10 +132,21 @@ html,body,#app {
 }
 
 @layer base {
+  /* 将 Inter 设置为默认的无衬线字体栈 */
+  /* :root {
+    --font-sans: 'Inter', ui-sans-serif, system-ui, sans-serif;
+  } */
+
   * {
     @apply border-border outline-ring/50;
   }
+
   body {
+    font-family: var(--font-sans);
     @apply bg-background text-foreground;
   }
+}
+
+.zsf-nav-link {
+  @apply flex items-center gap-2 px-4 py-2.5 rounded-lg text-sm font-medium transition-all duration-200 hover:bg-gray-200 dark:hover:bg-accent/20;
 }
