@@ -1,5 +1,10 @@
 <!-- RadioButtonGroup.vue -->
 <script setup lang="ts">
+/**************************************************************
+ * 定制的方形单选按键组件
+ **************************************************************
+*/
+
 import { computed } from 'vue'
 
 const props = defineProps({

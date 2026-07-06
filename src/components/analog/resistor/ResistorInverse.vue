@@ -9,6 +9,7 @@ import { ZapIcon, HelpCircleIcon, CheckCircle2Icon } from '@lucide/vue';
 import { E24_BASE, E96_BASE, E192_BASE } from './constants'
 // 导入您封装的单选按钮组件
 import RadioButtonGroup from '@/components/zsf_ui/RadioButtonGroup.vue'
+import CardFeatureHeader from '@/components/zsf_ui/CardFeatureHeader.vue'
 
 // 1. 状态定义
 const targetValueInput = ref<string>('150') // 目标阻值输入（字符串方便用户输入）
@@ -134,24 +135,7 @@ const countOptions = [
 <template>
     <Card
         class="w-full shadow-lg border border-gray-200/70 dark:border-zinc-800 bg-white dark:bg-zinc-900 overflow-hidden rounded-xl pt-0">
-        <!-- 修复标题背景覆盖问题 -->
-        <div class="bg-slate-800 dark:bg-slate-900 rounded-t-xl p-4">
-            <div class="flex items-center gap-3">
-                <div class="bg-emerald-500/20 p-2.5 rounded-xl border border-emerald-500/30">
-                    <ZapIcon class="h-5 w-5 text-emerald-400" />
-                </div>
-                <div>
-                    <!-- 恢复标题内容 -->
-                    <CardTitle class="text-xl font-bold text-white">
-                        电阻并联逆向匹配（推荐）
-                    </CardTitle>
-                    <!-- 恢复描述内容 -->
-                    <CardDescription class="text-slate-300 mt-0.5">
-                        输入你想要的非标阻值，系统将自动从标准电阻系列中为你匹配最接近的并联组合。
-                    </CardDescription>
-                </div>
-            </div>
-        </div>
+        <CardFeatureHeader title="电阻并联逆向匹配（推荐）" description="输入你想要的非标阻值，系统将自动从标准电阻系列中为你匹配最接近的并联组合。" />
 
         <CardContent class="space-y-6 pt-4">
             <div class="space-y-2">
@@ -161,7 +145,7 @@ const countOptions = [
                     目标期望阻值 (Ω)
                 </Label>
                 <Input id="target-value" v-model="targetValueInput" type="number" placeholder="例如: 150"
-                    class="w-full text-base font-mono tracking-wide border border-gray-200 dark:border-zinc-700 focus:border-emerald-500 focus:ring-2 focus:ring-emerald-500/20 rounded-lg shadow-sm transition-all" />
+                    class="zsf-form-label" />
             </div>
 
             <div class="space-y-2">
@@ -212,7 +196,7 @@ const countOptions = [
                         <div class="flex items-center gap-4 mt-3 sm:mt-0 justify-between sm:justify-end text-sm">
                             <span class="text-zinc-700 dark:text-zinc-300 font-medium">
                                 并联总值: <strong class="font-mono text-lg">{{ formatResistanceSimple(result.actual)
-                                    }}</strong>
+                                }}</strong>
                             </span>
                             <span :class="[
                                 'px-3 py-1 rounded-lg text-sm font-mono font-bold shadow-sm border',

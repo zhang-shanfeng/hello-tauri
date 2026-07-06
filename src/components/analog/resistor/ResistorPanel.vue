@@ -1,3 +1,10 @@
+<script setup lang="ts">
+import { Tabs, TabsList, TabsTrigger, TabsContent } from '@/components/ui/tabs';
+import ResistorForward from './ResistorForward.vue';
+import ResistorInverse from './ResistorInverse.vue';
+import ResistorVoltageDivider from './ResistorVoltageDivider.vue';
+</script>
+
 <template>
     <div class="p-6 max-w-6xl mx-auto space-y-6">
         <div class="flex flex-col gap-1">
@@ -8,12 +15,15 @@
         </div>
 
         <Tabs default-value="forward" class="w-full">
-            <TabsList class="grid w-full grid-cols-2 max-w-[400px]">
+            <TabsList class="grid w-full grid-cols-3 max-w-[400px]">
                 <TabsTrigger value="forward">
                     正向并联计算
                 </TabsTrigger>
                 <TabsTrigger value="inverse">
                     逆向智能匹配
+                </TabsTrigger>
+                <TabsTrigger value="voltage-divider">
+                    电阻分压器计算
                 </TabsTrigger>
             </TabsList>
 
@@ -24,12 +34,10 @@
             <TabsContent value="inverse" class="mt-4">
                 <ResistorInverse />
             </TabsContent>
+
+            <TabsContent value="voltage-divider" class="mt-4 mb-4">
+                <ResistorVoltageDivider />
+            </TabsContent>
         </Tabs>
     </div>
 </template>
-
-<script setup lang="ts">
-import { Tabs, TabsList, TabsTrigger, TabsContent } from '@/components/ui/tabs';
-import ResistorForward from './ResistorForward.vue';
-import ResistorInverse from './ResistorInverse.vue';
-</script>
