@@ -6,7 +6,7 @@ import ResistorVoltageDivider from './ResistorVoltageDivider.vue';
 </script>
 
 <template>
-    <div class="p-6 max-w-6xl mx-auto space-y-6">
+    <div class="p-6 max-w-6xl mx-auto space-y-6 flex-grow min-h-0 overflow-y-auto">
         <div class="flex flex-col gap-1">
             <h2 class="text-2xl font-bold tracking-tight">电阻设计工程套件</h2>
             <p class="text-sm text-muted-foreground">

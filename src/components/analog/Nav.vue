@@ -4,16 +4,16 @@ import { OmegaIcon, CircleGaugeIcon, ZodiacAquariusIcon, FunnelIcon, BatteryIcon
 </script>
 
 <template>
-    <div class="w-full">
+
         <!-- 工具导航区域 -->
-        <div class="mb-6 border-b border-border/50 dark:border-border/20 pb-4">
+        <div class="pb-4">
             <div class="relative">
                 <!-- 背景装饰元素 -->
                 <div
                     class="absolute -top-4 left-0 right-0 h-12 bg-gradient-to-b from-background/50 to-background rounded-t-lg z-0" />
 
                 <!-- 导航标题 -->
-                <h2 class="text-xl font-semibold text-foreground mb-4 pl-2 relative z-10">
+                <h2 class="text-xl font-semibold text-foreground mb-2 pl-2 relative z-10">
                     <span class="bg-gradient-to-r from-emerald-500 to-cyan-500 bg-clip-text text-transparent">
                         模拟电路设计工具
                     </span>
@@ -61,7 +61,7 @@ import { OmegaIcon, CircleGaugeIcon, ZodiacAquariusIcon, FunnelIcon, BatteryIcon
                 </div>
             </div>
         </div>
-    </div>
+
 </template>
 
 

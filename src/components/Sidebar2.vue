@@ -6,14 +6,11 @@ import {
     SidebarGroup,
     SidebarGroupContent,
     SidebarGroupLabel,
-    SidebarHeader,
-    SidebarInset,
     SidebarMenu,
     SidebarMenuButton,
     SidebarMenuItem,
     SidebarProvider,
     SidebarRail,
-    SidebarTrigger,
 } from "./ui/sidebar";
 import {
     HomeIcon,

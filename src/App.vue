@@ -1,19 +1,23 @@
 <script setup lang="ts">
-// import { ref } from "vue";
-// import { invoke } from "@tauri-apps/api/core";
-// import Sidebar from "./components/Sidebar.vue";
+import { onMounted, nextTick } from "vue";
+
+import { getCurrentWindow } from "@tauri-apps/api/window";
+
 import Sidebar2 from "./components/Sidebar2.vue";
 
-import 'vue-sonner/style.css'
-import { Toaster } from '@/components/ui/sonner'
+import "vue-sonner/style.css";
+import { Toaster } from "@/components/ui/sonner";
 
-// const greetMsg = ref("");
-// const name = ref("");
+onMounted(async () => {
+    const appWindow = getCurrentWindow();
 
-// async function greet() {
-//     // Learn more about Tauri commands at https://tauri.app/develop/calling-rust/
-//     greetMsg.value = await invoke("greet", { name: name.value });
-// }
+    // 1. 等待 Vue 完成所有的 DOM 更新（即所有常规组件都渲染完毕）
+    await nextTick();
+
+    // 2. 此时页面上的骨架屏或首屏内容已经稳稳地画在屏幕上了
+    // 安全地显示窗口，用户看到的是完整的界面，没有任何白屏
+    await appWindow.show();
+});
 </script>
 
 <template>

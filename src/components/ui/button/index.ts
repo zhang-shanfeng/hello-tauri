@@ -8,46 +8,25 @@ export const buttonVariants = cva(
   {
     variants: {
       variant: {
-        // 2. 优化默认变体 (default)：加入 hover 颜色加深，active 瞬间变深，松开缓缓恢复
         default:
-          'bg-primary text-primary-foreground shadow-sm hover:bg-primary/90 active:bg-primary/70',
-
-        // 3. 优化次要变体 (secondary)
-        secondary:
-          'bg-secondary text-secondary-foreground shadow-sm hover:bg-secondary/80 active:bg-secondary/60',
-
-        // 4. 优化破坏性变体 (destructive)
+          "bg-primary text-primary-foreground hover:bg-primary/90",
         destructive:
-          'bg-destructive text-destructive-foreground shadow-sm hover:bg-destructive/90 active:bg-destructive/70',
-
-        // 5. 优化边框变体 (outline)：点击时背景有优雅的浅色高亮淡出
+          "bg-destructive text-white hover:bg-destructive/90 focus-visible:ring-destructive/20 dark:focus-visible:ring-destructive/40 dark:bg-destructive/60",
         outline:
-          'border border-input bg-background shadow-sm hover:bg-accent hover:text-accent-foreground active:bg-accent/80',
-
-        // 6. 优化幽灵变体 (ghost)
+          "border bg-background shadow-xs hover:bg-accent hover:text-accent-foreground dark:bg-input/30 dark:border-input dark:hover:bg-input/50",
+        secondary:
+          "bg-secondary text-secondary-foreground hover:bg-secondary/80",
         ghost:
-          'hover:bg-accent hover:text-accent-foreground active:bg-accent/80',
-
-        link:
-          'text-primary underline-offset-4 hover:underline',
-
-        // ✨ 1. 新增：成功状态 (绿色)
-        success:
-          'bg-emerald-600 text-white shadow-sm hover:bg-emerald-500 active:bg-emerald-700 dark:bg-emerald-600/50 dark:text-white dark:shadow-sm dark:hover:bg-emerald-500 dark:active:bg-emerald-700',
-
-        // ✨ 2. 新增：警告状态 (橙色)
-        warning:
-          'bg-amber-500 text-white shadow-sm hover:bg-amber-400 active:bg-amber-600',
-
-        // ✨ 3. 新增：信息状态 (蓝色)
-        info:
-          'bg-sky-500 text-white shadow-sm hover:bg-sky-400 active:bg-sky-600',
+          "hover:bg-accent hover:text-accent-foreground dark:hover:bg-accent/50",
+        link: "text-primary underline-offset-4 hover:underline",
       },
       size: {
         "default": "h-9 px-4 py-2 has-[>svg]:px-3",
+        "xs": "h-6 gap-1 rounded-md px-2 text-xs has-[>svg]:px-1.5 [&_svg:not([class*='size-'])]:size-3",
         "sm": "h-8 rounded-md gap-1.5 px-3 has-[>svg]:px-2.5",
         "lg": "h-10 rounded-md px-6 has-[>svg]:px-4",
         "icon": "size-9",
+        "icon-xs": "size-6 rounded-md [&_svg:not([class*='size-'])]:size-3",
         "icon-sm": "size-8",
         "icon-lg": "size-10",
       },

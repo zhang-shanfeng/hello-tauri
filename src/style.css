@@ -1,3 +1,6 @@
+
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
+
 /* @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap'); */
 @import "/public/fonts/fonts.css";
 
@@ -162,7 +165,7 @@ body,
     }
 
     .zsf-form-label {
-        @apply text-sm font-medium text-slate-400 dark:text-zinc-400 block;
+        @apply font-medium text-slate-400 dark:text-zinc-400 block;
     }
 
     .zsf-sidebar-nav-link {

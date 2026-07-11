@@ -4,17 +4,18 @@
  **************************************************************
  */
 import CardFeatureHeader from "@/components/zsf_ui/CardFeatureHeader.vue";
-import { Tabs, TabsList, TabsTrigger, TabsContent } from "@/components/ui/tabs";
 import { ref, computed, watch } from "vue";
-import {
-    Card,
-    CardContent,
-    CardDescription,
-    CardHeader,
-    CardTitle,
-} from "@/components/ui/card";
+import { Card, CardContent } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Input } from "@/components/ui/input";
+import {
+  InputGroup,
+  InputGroupAddon,
+  InputGroupButton,
+  InputGroupInput,
+  InputGroupText,
+  InputGroupTextarea,
+} from '@/components/ui/input-group'
 import { Label } from "@/components/ui/label";
 import { Separator } from "@/components/ui/separator";
 import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group";
@@ -242,148 +243,176 @@ watch(
 
 <template>
     <Card
-        class="flex flex-col max-h-[70vh] w-full shadow-lg border border-gray-200/70 dark:border-zinc-800 bg-white dark:bg-zinc-900 rounded-xl pt-0"
+        class="flex flex-col w-full shadow-lg border border-gray-200/70 dark:border-zinc-800 bg-white dark:bg-zinc-900 rounded-xl pt-0"
     >
         <CardFeatureHeader
             title="电阻串联分压计算"
             description="输入你想要的非标阻值，系统将自动从标准电阻系列中为你匹配最接近的并联组合。"
         />
 
-        <CardContent class="space-y-6 overflow-y-auto">
+        <CardContent class="space-y-6">
             <!-- 1. 交互式计算区域 -->
             <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
                 <div
-                    class="flex flex-col space-y-2 rounded-xl shadow-md border border-slate-200 dark:border-zinc-800 p-4"
+                    class="[&_*]:text-xl flex flex-col space-y-4 rounded-xl shadow-md border border-slate-200 dark:border-zinc-800 p-4"
                 >
+                    <!-- Vin 输入电压区域 -->
                     <div class="space-y-2">
-                        <Label for="vin" class="zsf-form-label"
-                            >输入电压 (V<sub>in</sub>)</Label
-                        >
-                        <Input
-                            id="vin"
-                            v-model.number="vin"
-                            type="number"
-                            placeholder="例如: 12"
-                            min="0.1"
-                            step="0.1"
-                            class="zsf-input-text"
-                        />
-                    </div>
-                    <div class="space-y-2">
-                        <Label for="r1" class="zsf-form-label"
-                            >电阻 R1 ({{ r1Unit }})</Label
-                        >
+                        <InputGroup>
+                            <InputGroupAddon>
+                                <InputGroupText>输入电压 Vin</InputGroupText>
+                            </InputGroupAddon>
+                            <InputGroupInput
+                                id="vin"
+                                v-model.number="vin"
+                                type="number"
+                                placeholder="例如: 12"
 
-                        <Input
-                            id="r1"
-                            v-model.number="displayR1"
-                            @input="calculateResistors('r1')"
-                            type="number"
-                            placeholder="例如: 10000"
-                            class="zsf-input-text"
-                            :disabled="
-                                isComputedResistor &&
-                                resistorLockedSelectValue === 'r1'
-                            "
-                        />
-                        <!-- 单位选择器 -->
-                        <RadioGroup
-                            v-model="r1Unit"
-                            class="flex flex-row space-x-1"
-                            @update:modelValue="calculateResistors('r1')"
-                        >
-                            <div class="flex items-center">
-                                <RadioGroupItem
-                                    value="Ω"
-                                    id="r1_ohm"
-                                    :disabled="
-                                        isComputedResistor &&
-                                        resistorLockedSelectValue === 'r1'
-                                    "
-                                />
-                                <Label for="r1_ohm" class="text-xs">Ω</Label>
-                            </div>
-                            <div class="flex items-center">
-                                <RadioGroupItem
-                                    value="KΩ"
-                                    id="r1_k"
-                                    :disabled="
-                                        isComputedResistor &&
-                                        resistorLockedSelectValue === 'r1'
-                                    "
-                                />
-                                <Label for="r1_k" class="text-xs">KΩ</Label>
-                            </div>
-                            <div class="flex items-center">
-                                <RadioGroupItem
-                                    value="MΩ"
-                                    id="r1_m"
-                                    :disabled="
-                                        isComputedResistor &&
-                                        resistorLockedSelectValue === 'r1'
-                                    "
-                                />
-                                <Label for="r1_m" class="text-xs">MΩ</Label>
-                            </div>
-                        </RadioGroup>
+                                class="text-2xl"
+                            />
+                            <InputGroupAddon align="inline-end">
+                                <InputGroupText>V</InputGroupText>
+                            </InputGroupAddon>
+                        </InputGroup>
                     </div>
-                    <div class="space-y-2">
-                        <Label for="r2" class="zsf-form-label"
-                            >电阻 R2 ({{ r2Unit }})</Label
-                        >
+                    <Separator />
+                    <!-- R1 电阻区域 -->
+                    <div class="space-y-2 mb-4">
 
-                        <Input
-                            id="r2"
-                            v-model.number="displayR2"
-                            @input="calculateResistors('r2')"
-                            type="number"
-                            placeholder="例如: 10000"
-                            class="zsf-input-text"
-                            :disabled="
-                                isComputedResistor &&
-                                resistorLockedSelectValue === 'r2'
-                            "
-                        />
-                        <!-- 单位选择器 -->
-                        <RadioGroup
-                            v-model="r2Unit"
-                            class="flex flex-row space-x-1"
-                            @update:modelValue="calculateResistors('r2')"
-                        >
-                            <div class="flex items-center">
-                                <RadioGroupItem
-                                    value="Ω"
-                                    id="r2_ohm"
+                        <div class="grid grid-cols-1 lg:grid-cols-12 gap-4 [&_*]:text-xl">
+                            <InputGroup class="lg:col-span-6 hover:bg-rose-200">
+                                <InputGroupAddon>
+                                    <InputGroupText>R1</InputGroupText>
+                                </InputGroupAddon>
+                                <InputGroupInput
+                                    id="r1"
+                                    v-model.number="displayR1"
+                                    @input="calculateResistors('r1')"
+                                    type="number"
+                                    placeholder="例如: 10000"
+                                    class="text-center"
+                                    :disabled="
+                                        isComputedResistor &&
+                                        resistorLockedSelectValue === 'r1'
+                                    "
+                                    autofocus="true"
+                                />
+                                <InputGroupAddon align="inline-end">
+                                    <InputGroupText>{{ r1Unit }}</InputGroupText>
+                                </InputGroupAddon>
+                            </InputGroup>
+
+                            <!-- 单位选择器 -->
+                            <RadioGroup
+                                v-model="r1Unit"
+                                class="flex flex-row"
+                                @update:modelValue="calculateResistors('r1')"
+                            >
+                                <div class="flex items-center">
+                                    <RadioGroupItem
+                                        value="Ω"
+                                        id="r1_ohm"
+                                        :disabled="
+                                            isComputedResistor &&
+                                            resistorLockedSelectValue === 'r1'
+                                        "
+                                    />
+                                    <Label for="r1_ohm" class="ml-1">Ω</Label>
+                                </div>
+                                <div class="flex items-center">
+                                    <RadioGroupItem
+                                        value="KΩ"
+                                        id="r1_k"
+                                        :disabled="
+                                            isComputedResistor &&
+                                            resistorLockedSelectValue === 'r1'
+                                        "
+                                    />
+                                    <Label for="r1_k" class="ml-1">KΩ</Label>
+                                </div>
+                                <div class="flex items-center">
+                                    <RadioGroupItem
+                                        value="MΩ"
+                                        id="r1_m"
+                                        :disabled="
+                                            isComputedResistor &&
+                                            resistorLockedSelectValue === 'r1'
+                                        "
+                                    />
+                                    <Label for="r1_m" class="ml-1">MΩ</Label>
+                                </div>
+                            </RadioGroup>
+                        </div>
+                    </div>
+                    <Separator/>
+                    <!-- R2 电阻区域 -->
+                    <div class="space-y-2 mb-4">
+                        <div class="grid grid-cols-1 lg:grid-cols-12 gap-4 [&_*]:text-xl">
+                            <InputGroup class="lg:col-span-6">
+                                <InputGroupAddon>
+                                    <InputGroupText>R2</InputGroupText>
+                                </InputGroupAddon>
+                                <InputGroupInput
+                                    id="r2"
+                                    v-model.number="displayR2"
+                                    @input="calculateResistors('r2')"
+                                    type="number"
+                                    placeholder="例如: 10000"
+                                    class="text-center"
                                     :disabled="
                                         isComputedResistor &&
                                         resistorLockedSelectValue === 'r2'
                                     "
                                 />
-                                <Label for="r2_ohm" class="text-xs">Ω</Label>
-                            </div>
-                            <div class="flex items-center">
-                                <RadioGroupItem
-                                    value="KΩ"
-                                    id="r2_k"
-                                    :disabled="
-                                        isComputedResistor &&
-                                        resistorLockedSelectValue === 'r2'
-                                    "
-                                />
-                                <Label for="r2_k" class="text-xs">KΩ</Label>
-                            </div>
-                            <div class="flex items-center">
-                                <RadioGroupItem
-                                    value="MΩ"
-                                    id="r2_m"
-                                    :disabled="
-                                        isComputedResistor &&
-                                        resistorLockedSelectValue === 'r2'
-                                    "
-                                />
-                                <Label for="r2_m" class="text-xs">MΩ</Label>
-                            </div>
-                        </RadioGroup>
+                                <InputGroupAddon align="inline-end">
+                                    <InputGroupText>{{ r2Unit }}</InputGroupText>
+                                </InputGroupAddon>
+                            </InputGroup>
+
+                            <!-- 单位选择器 -->
+                            <RadioGroup
+                                v-model="r2Unit"
+                                class="flex flex-row"
+                                @update:modelValue="calculateResistors('r2')"
+                            >
+                                <div class="flex items-center">
+                                    <RadioGroupItem
+                                        value="Ω"
+                                        id="r2_ohm"
+                                        :disabled="
+                                            isComputedResistor &&
+                                            resistorLockedSelectValue === 'r2'
+                                        "
+                                    />
+                                    <Label for="r2_ohm" class=" ml-1">Ω</Label>
+                                </div>
+                                <div class="flex items-center">
+                                    <RadioGroupItem
+                                        value="KΩ"
+                                        id="r2_k"
+                                        :disabled="
+                                            isComputedResistor &&
+                                            resistorLockedSelectValue === 'r2'
+                                        "
+                                    />
+                                    <Label for="r2_k" class="ml-1">KΩ</Label>
+                                </div>
+                                <div class="flex items-center">
+                                    <RadioGroupItem
+                                        value="MΩ"
+                                        id="r2_m"
+                                        :disabled="
+                                            isComputedResistor &&
+                                            resistorLockedSelectValue === 'r2'
+                                        "
+                                    />
+                                    <Label for="r2_m" class="ml-1">MΩ</Label>
+                                </div>
+                            </RadioGroup>
+
+
+                        </div>
+
                     </div>
                 </div>
                 <!-- 控制区 Card -->
